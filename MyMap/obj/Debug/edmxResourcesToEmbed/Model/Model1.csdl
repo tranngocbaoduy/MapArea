@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MYMAPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="MAPUSER">
+    <Key>
+      <PropertyRef Name="USERNAME" />
+    </Key>
+    <Property Name="USERNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PASSWORD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="VERTEX">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="X" Type="Double" />
+    <Property Name="Y" Type="Double" />
+    <Property Name="VERTEXNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NUMBER_VERTEX_KE" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="VERTEX_SAVED" Relationship="Self.FK_VERTEX_SAVED" FromRole="VERTEX" ToRole="VERTEX_SAVED" />
+    <NavigationProperty Name="VERTEX_VERTEX" Relationship="Self.FK_VERTEX_VERTEX_X1Y1" FromRole="VERTEX" ToRole="VERTEX_VERTEX" />
+    <NavigationProperty Name="VERTEX_VERTEX1" Relationship="Self.FK_VERTEX_VERTEX_X2Y2" FromRole="VERTEX" ToRole="VERTEX_VERTEX" />
+  </EntityType>
+  <EntityType Name="VERTEX_SAVED">
+    <Key>
+      <PropertyRef Name="STT" />
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="STT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="X" Type="Double" />
+    <Property Name="Y" Type="Double" />
+    <Property Name="VERTEXNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NUMBER_VERTEX_KE" Type="Int32" Nullable="false" />
+    <Property Name="DATECHANGE" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="VERTEX" Relationship="Self.FK_VERTEX_SAVED" FromRole="VERTEX_SAVED" ToRole="VERTEX" />
+  </EntityType>
+  <EntityType Name="VERTEX_VERTEX">
+    <Key>
+      <PropertyRef Name="V1" />
+      <PropertyRef Name="V2" />
+    </Key>
+    <Property Name="V1" Type="Int32" Nullable="false" />
+    <Property Name="V2" Type="Int32" Nullable="false" />
+    <Property Name="WEIGHT" Type="Double" Nullable="false" />
+    <NavigationProperty Name="VERTEX" Relationship="Self.FK_VERTEX_VERTEX_X1Y1" FromRole="VERTEX_VERTEX" ToRole="VERTEX" />
+    <NavigationProperty Name="VERTEX1" Relationship="Self.FK_VERTEX_VERTEX_X2Y2" FromRole="VERTEX_VERTEX" ToRole="VERTEX" />
+  </EntityType>
+  <Association Name="FK_VERTEX_SAVED">
+    <End Role="VERTEX" Type="Self.VERTEX" Multiplicity="1" />
+    <End Role="VERTEX_SAVED" Type="Self.VERTEX_SAVED" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VERTEX">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="VERTEX_SAVED">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VERTEX_VERTEX_X1Y1">
+    <End Role="VERTEX" Type="Self.VERTEX" Multiplicity="1" />
+    <End Role="VERTEX_VERTEX" Type="Self.VERTEX_VERTEX" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VERTEX">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="VERTEX_VERTEX">
+        <PropertyRef Name="V1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VERTEX_VERTEX_X2Y2">
+    <End Role="VERTEX" Type="Self.VERTEX" Multiplicity="1" />
+    <End Role="VERTEX_VERTEX" Type="Self.VERTEX_VERTEX" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VERTEX">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="VERTEX_VERTEX">
+        <PropertyRef Name="V2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MYMAPEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="MAPUSERs" EntityType="Self.MAPUSER" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Vertices" EntityType="Self.VERTEX" />
+    <EntitySet Name="VERTEX_SAVED" EntityType="Self.VERTEX_SAVED" />
+    <EntitySet Name="VERTEX_VERTEX" EntityType="Self.VERTEX_VERTEX" />
+    <AssociationSet Name="FK_VERTEX_SAVED" Association="Self.FK_VERTEX_SAVED">
+      <End Role="VERTEX" EntitySet="Vertices" />
+      <End Role="VERTEX_SAVED" EntitySet="VERTEX_SAVED" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VERTEX_VERTEX_X1Y1" Association="Self.FK_VERTEX_VERTEX_X1Y1">
+      <End Role="VERTEX" EntitySet="Vertices" />
+      <End Role="VERTEX_VERTEX" EntitySet="VERTEX_VERTEX" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VERTEX_VERTEX_X2Y2" Association="Self.FK_VERTEX_VERTEX_X2Y2">
+      <End Role="VERTEX" EntitySet="Vertices" />
+      <End Role="VERTEX_VERTEX" EntitySet="VERTEX_VERTEX" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

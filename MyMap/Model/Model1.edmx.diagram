@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0c347d47922343e994376e33bf451630" Name="Diagram1">
+        <EntityTypeShape EntityType="MYMAPModel.MAPUSER" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MYMAPModel.sysdiagram" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MYMAPModel.VERTEX" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MYMAPModel.VERTEX_SAVED" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MYMAPModel.VERTEX_VERTEX" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <AssociationConnector Association="MYMAPModel.FK_VERTEX_SAVED" ManuallyRouted="false" />
+        <AssociationConnector Association="MYMAPModel.FK_VERTEX_VERTEX_X1Y1" ManuallyRouted="false" />
+        <AssociationConnector Association="MYMAPModel.FK_VERTEX_VERTEX_X2Y2" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,223 @@
+﻿<Window x:Class="MyMap.MapCreate"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyMap"
+        mc:Ignorable="d" 
+        xmlns:uc="clr-namespace:MyMap.ControlBarUC"
+        xmlns:i ="http://schemas.microsoft.com/expression/2010/interactivity"
+        DataContext="{StaticResource MapCreateVM}"
+        Title="Create Map" Height="800" Width="1400" 
+        WindowStartupLocation="CenterScreen" 
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local1="clr-namespace:MyMap.ViewModel"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        BorderBrush="Black" 
+        BorderThickness="0.4"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}" 
+        ResizeMode="NoResize"
+        WindowStyle="None"   
+        Name="mapCreateWindow"
+           >
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" CommandParameter="{Binding ElementName=mapCreateWindow}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <uc:ControlBarUC Height="auto"  Tag="{Binding Title,ElementName=mapCreateWindow}"  Margin="275,0,0,0" ></uc:ControlBarUC>
+        </Grid>
+        <Grid Grid.Row="1" Background="AliceBlue">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="0.4*"></ColumnDefinition>
+                <ColumnDefinition Width="0.01*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+
+            <ScrollViewer Grid.Column="1"  Height="750" MaxHeight="750"  >
+                <Grid  Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <materialDesign:Card Grid.Column="0" Margin="7" >
+                            <TextBox Name="bindingText1" materialDesign:HintAssist.Hint="X" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding CoordinatorX}" Height="auto" Margin="15" Width="auto"  ></TextBox>
+                        </materialDesign:Card>
+                        <materialDesign:Card Grid.Column="1" Margin="7" >
+                            <TextBox Name="bindingText2" materialDesign:HintAssist.Hint="Y" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding CoordinatorY}" Height="auto" Margin="15" Width="auto"  ></TextBox>
+                        </materialDesign:Card>
+                    </Grid>
+                    <materialDesign:Card Grid.Row="1" Margin="7" >
+                        <TextBox Name="address" materialDesign:HintAssist.Hint="Tên Địa Điểm" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding AddressNameCreate}" Height="auto" Margin="15" Width="400"  ></TextBox>
+                    </materialDesign:Card>
+
+                    <materialDesign:Card Grid.Row="2" Margin="7" >
+                        <Button Command="{Binding CreateNewVertex}" ToolTip="Tạo địa điểm mới">
+                            <TextBlock TextWrapping="Wrap"  Text="TẠO ĐỊA ĐIỂM"  TextAlignment="Center" ></TextBlock>
+                        </Button>
+                    </materialDesign:Card>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <materialDesign:Card Grid.Column="0" Margin="7" >
+                            <TextBox  materialDesign:HintAssist.Hint="X Gần đó" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding CoordinatorXNear}" Height="auto" Margin="15" Width="auto"  ></TextBox>
+                        </materialDesign:Card>
+                        <materialDesign:Card Grid.Column="1" Margin="7" >
+                            <TextBox  materialDesign:HintAssist.Hint="Y Gần đó" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding CoordinatorYNear}" Height="auto" Margin="15" Width="auto"  ></TextBox>
+                        </materialDesign:Card>
+                    </Grid>
+                    <materialDesign:Card Grid.Row="4" Margin="7" >
+                        <TextBox  materialDesign:HintAssist.Hint="Tên Địa Điểm Gần Đó" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding AddressNameNear}" Height="auto" Margin="15" Width="400"  ></TextBox>
+                    </materialDesign:Card>
+                    <Grid Grid.Row="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <materialDesign:Card Grid.Column="0" Margin="7" >
+                            <Button Command="{Binding ChooseV1}"  >
+                                <TextBlock TextWrapping="Wrap"  Text="CHỌN ĐIỂM 1"  TextAlignment="Center" ></TextBlock>
+                            </Button>
+                        </materialDesign:Card>
+                        <materialDesign:Card Grid.Column="1" Margin="7" >
+                            <Button Command="{Binding ChooseV2}" >
+                                <TextBlock TextWrapping="Wrap"  Text="CHỌN ĐIỂM 2"  TextAlignment="Center" ></TextBlock>
+                            </Button>
+                        </materialDesign:Card>
+                    </Grid>
+                    <materialDesign:Card Grid.Row="6" Margin="7" >
+                        <Button Command="{Binding CreateNewVertex_Vertex}" ToolTip="Nối hai điểm chọn với nhau">
+                            <TextBlock TextWrapping="Wrap"  Text="NỐI ĐIỂM"  TextAlignment="Center" ></TextBlock>
+                        </Button>
+                    </materialDesign:Card>
+                    <materialDesign:Card Grid.Row="7" Margin="8" >
+                        <Button Command="{Binding DeleteVertex_Vertex}" ToolTip="Xoá nối 2 điểm đã chọn">
+                            <TextBlock TextWrapping="Wrap"  Text="XOÁ NỐI ĐIỂM"  TextAlignment="Center" ></TextBlock>
+                        </Button>
+                    </materialDesign:Card>
+                    <materialDesign:Card Grid.Row="8" Margin="7" >
+                        <Button Command="{Binding UpdateVertexChoose}" ToolTip="Cập nhật điểm đã chọn">
+                            <TextBlock TextWrapping="Wrap"  Text="CẬP NHẬT ĐIỂM"  TextAlignment="Center" ></TextBlock>
+                        </Button>
+                    </materialDesign:Card>
+                    <Grid Grid.Row="9">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <materialDesign:Card Grid.Column="0" Margin="7" >
+                            <Button Command="{Binding ChooseDiemDi}"  >
+                                <TextBlock TextWrapping="Wrap" FontSize="13" Text="CHỌN ĐIỂM ĐI" TextAlignment="Center" ></TextBlock>
+                            </Button>
+                        </materialDesign:Card>
+                        <materialDesign:Card Grid.Column="1" Margin="7" >
+                            <Button Command="{Binding ChooseDiemDen}" >
+                                <TextBlock TextWrapping="Wrap" FontSize="13" Text="CHỌN ĐIỂM ĐẾN"  TextAlignment="Center" ></TextBlock>
+                            </Button>
+                        </materialDesign:Card>
+                    </Grid>
+                    <materialDesign:Card ToolTip="Thông tin Đường Từ" Grid.Row="10" Margin="7" Height="auto" MaxHeight="360" VerticalContentAlignment="Stretch" >
+                        <ScrollViewer VerticalScrollBarVisibility="Disabled" Height="auto" >
+                            <ListView ItemsSource="{Binding PathList}" SelectedItem="{Binding SelectedVertex}">
+                                <ListView.View >
+                                    <GridView>
+                                        <GridViewColumn Width="140" Header="Tên Đường" DisplayMemberBinding="{Binding NamePath}"></GridViewColumn>
+                                        <GridViewColumn Width="110" Header="Distance" DisplayMemberBinding="{Binding Distance}"></GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </ScrollViewer>
+                    </materialDesign:Card>
+                </Grid>
+            </ScrollViewer>
+            <Grid Grid.Column="0"  >
+                <local1:ZoomBorder x:Name="border" ClipToBounds="True">
+                    <Canvas Width="auto" Height="auto" Name="myCanvas">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDown">
+                                <i:InvokeCommandAction Command="{Binding MouseDown}" CommandParameter="{Binding ElementName=myCanvas}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <Image  Width="auto" Height="auto" Source="Resources\my_new_task.jpg"></Image>
+
+
+                        <Canvas>
+                            <ItemsControl ItemsSource="{Binding AllVertex}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <Canvas Background="Transparent" Width="auto" Height="auto"></Canvas>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemContainerStyle>
+                                    <Style TargetType="ContentPresenter">
+                                        <Setter Property="Canvas.Left" Value="{Binding CanvasLeft}"/>
+                                        <Setter Property="Canvas.Top" Value="{Binding CanvasTop}"/>
+                                    </Style>
+                                </ItemsControl.ItemContainerStyle>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Index}" FontWeight="Black" Padding="4" FontSize="7" TextAlignment="Center" HorizontalAlignment="Center"  VerticalAlignment="Center" TextWrapping="WrapWithOverflow" Height="{Binding Height}" Width="{Binding Width}" >
+                                            <TextBlock.Background>
+                                                <VisualBrush>
+                                                    <VisualBrush.Visual>
+                                                        <Ellipse Height="{Binding Height}" Width="{Binding Width}" Fill="Yellow" >
+
+                                                        </Ellipse>
+                                                    </VisualBrush.Visual>
+                                                </VisualBrush>
+                                            </TextBlock.Background>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+
+
+                            <Ellipse Width="16" Height="16" Fill="Lime" Stroke="Green" StrokeThickness="2"
+                     Canvas.Left="{Binding Path=p1,UpdateSourceTrigger=PropertyChanged}" 
+                     Canvas.Top="{Binding Path=p2,UpdateSourceTrigger=PropertyChanged}"
+                     ></Ellipse>
+                            <Ellipse Width="16" Height="16" Fill="Lime" Stroke="Red" StrokeThickness="2"
+                     Canvas.Left="{Binding Path=CoordinatorX,UpdateSourceTrigger=PropertyChanged}" 
+                     Canvas.Top="{Binding Path=CoordinatorY,UpdateSourceTrigger=PropertyChanged}"
+                     ></Ellipse>
+                            <Ellipse  Width="16" Height="16" Fill="Yellow" Stroke="OrangeRed" StrokeThickness="2"
+                    Canvas.Left="{Binding Path=p3,UpdateSourceTrigger=PropertyChanged}" 
+                     Canvas.Top="{Binding Path=p4,UpdateSourceTrigger=PropertyChanged}"
+                      ></Ellipse>
+                            <Path Data="{Binding Path=PatDirection}" Name="patDirection" Stroke="Goldenrod" StrokeThickness="3" ></Path>
+                        </Canvas>
+                    </Canvas>
+                </local1:ZoomBorder>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

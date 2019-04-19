@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MYMAPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="MAPUSER">
+    <Key>
+      <PropertyRef Name="USERNAME" />
+    </Key>
+    <Property Name="USERNAME" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PASSWORD" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="VERTEX">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="X" Type="float" />
+    <Property Name="Y" Type="float" />
+    <Property Name="VERTEXNAME" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="NUMBER_VERTEX_KE" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VERTEX_SAVED">
+    <Key>
+      <PropertyRef Name="STT" />
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="STT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="X" Type="float" />
+    <Property Name="Y" Type="float" />
+    <Property Name="VERTEXNAME" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="NUMBER_VERTEX_KE" Type="int" Nullable="false" />
+    <Property Name="DATECHANGE" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VERTEX_VERTEX">
+    <Key>
+      <PropertyRef Name="V1" />
+      <PropertyRef Name="V2" />
+    </Key>
+    <Property Name="V1" Type="int" Nullable="false" />
+    <Property Name="V2" Type="int" Nullable="false" />
+    <Property Name="WEIGHT" Type="float" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_VERTEX_SAVED">
+    <End Role="VERTEX" Type="Self.VERTEX" Multiplicity="1" />
+    <End Role="VERTEX_SAVED" Type="Self.VERTEX_SAVED" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VERTEX">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="VERTEX_SAVED">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VERTEX_VERTEX_X1Y1">
+    <End Role="VERTEX" Type="Self.VERTEX" Multiplicity="1" />
+    <End Role="VERTEX_VERTEX" Type="Self.VERTEX_VERTEX" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VERTEX">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="VERTEX_VERTEX">
+        <PropertyRef Name="V1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VERTEX_VERTEX_X2Y2">
+    <End Role="VERTEX" Type="Self.VERTEX" Multiplicity="1" />
+    <End Role="VERTEX_VERTEX" Type="Self.VERTEX_VERTEX" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VERTEX">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="VERTEX_VERTEX">
+        <PropertyRef Name="V2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MYMAPModelStoreContainer">
+    <EntitySet Name="MAPUSER" EntityType="Self.MAPUSER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VERTEX" EntityType="Self.VERTEX" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VERTEX_SAVED" EntityType="Self.VERTEX_SAVED" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VERTEX_VERTEX" EntityType="Self.VERTEX_VERTEX" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_VERTEX_SAVED" Association="Self.FK_VERTEX_SAVED">
+      <End Role="VERTEX" EntitySet="VERTEX" />
+      <End Role="VERTEX_SAVED" EntitySet="VERTEX_SAVED" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VERTEX_VERTEX_X1Y1" Association="Self.FK_VERTEX_VERTEX_X1Y1">
+      <End Role="VERTEX" EntitySet="VERTEX" />
+      <End Role="VERTEX_VERTEX" EntitySet="VERTEX_VERTEX" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VERTEX_VERTEX_X2Y2" Association="Self.FK_VERTEX_VERTEX_X2Y2">
+      <End Role="VERTEX" EntitySet="VERTEX" />
+      <End Role="VERTEX_VERTEX" EntitySet="VERTEX_VERTEX" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

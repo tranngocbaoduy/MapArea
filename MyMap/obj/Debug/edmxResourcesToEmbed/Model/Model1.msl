@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MYMAPModelStoreContainer" CdmEntityContainer="MYMAPEntities2">
+    <EntitySetMapping Name="MAPUSERs">
+      <EntityTypeMapping TypeName="MYMAPModel.MAPUSER">
+        <MappingFragment StoreEntitySet="MAPUSER">
+          <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="MYMAPModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vertices">
+      <EntityTypeMapping TypeName="MYMAPModel.VERTEX">
+        <MappingFragment StoreEntitySet="VERTEX">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="X" ColumnName="X" />
+          <ScalarProperty Name="Y" ColumnName="Y" />
+          <ScalarProperty Name="VERTEXNAME" ColumnName="VERTEXNAME" />
+          <ScalarProperty Name="NUMBER_VERTEX_KE" ColumnName="NUMBER_VERTEX_KE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VERTEX_SAVED">
+      <EntityTypeMapping TypeName="MYMAPModel.VERTEX_SAVED">
+        <MappingFragment StoreEntitySet="VERTEX_SAVED">
+          <ScalarProperty Name="STT" ColumnName="STT" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="X" ColumnName="X" />
+          <ScalarProperty Name="Y" ColumnName="Y" />
+          <ScalarProperty Name="VERTEXNAME" ColumnName="VERTEXNAME" />
+          <ScalarProperty Name="NUMBER_VERTEX_KE" ColumnName="NUMBER_VERTEX_KE" />
+          <ScalarProperty Name="DATECHANGE" ColumnName="DATECHANGE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VERTEX_VERTEX">
+      <EntityTypeMapping TypeName="MYMAPModel.VERTEX_VERTEX">
+        <MappingFragment StoreEntitySet="VERTEX_VERTEX">
+          <ScalarProperty Name="V1" ColumnName="V1" />
+          <ScalarProperty Name="V2" ColumnName="V2" />
+          <ScalarProperty Name="WEIGHT" ColumnName="WEIGHT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
