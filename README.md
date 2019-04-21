@@ -1,12 +1,9 @@
 # MapArea
 Manage Area By App  
 ------------------------------------
-This is app mange, collect, update area'information based on my idea. It's work in available area which we added. You can add, update and manage it.
------------------------------------- 		
-How to set up program
-\n
-Step 1: After open folder, you create a new database named MyMap (must be named MyMap). Then, you restore file availible MyMap.bak to database MyMap.
-\n
+This is app mange, collect, update area'information based on my idea. It's work in available area which we added. You can add, update and manage it.&nbsp; 		
+How to set up program&nbsp; 	
+Step 1: After open folder, you create a new database named MyMap (must be named MyMap). Then, you restore file availible MyMap.bak to database MyMap.&nbsp; 	
 Step 2: Open the project. In your right, you’ll see a folder Model. Double click to open it, then you delete file Model1.edmx.
 \n
 Step 3: After that, you double click in MyMap and add new item, choose Data and add ADO.NET Entity Data Model named default is Model1. After you click add, the project show a table, click Next and click New Connection. Fill your server name and choose your database MyMap. Click OK. It’ll show you a name such as MyMapEntities. You should copy this name, click Next, choose table and click Finish. 
